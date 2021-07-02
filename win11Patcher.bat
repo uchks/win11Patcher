@@ -46,7 +46,7 @@ echo https://discord.iloveemogirls.com && rem This is my Discord server, drop by
 echo.
 echo 1. Insider Patch -
 echo 	Changes Insider channel from Release Preview or Beta to Dev channel (Allows Windows 11 insider updates)
-echo 	[31mExperimental Patch[37m included for bypassing TPM 2.0 check and Secure Boot check on a reboot. && rem ChrisTitusTech claims this works but :thonk:
+echo 	Bypasses TPM 2.0 check and Secure Boot check on a reboot.
 echo.
 echo 2. ISO Patch [31m(Work in Progress)[37m -
 echo 	Allows the upgrade to Windows 11 using the ISOs "Setup.exe" on unsupported hardware.
@@ -82,6 +82,9 @@ echo If you're not already in the Release Preview insider ring do that now. Afte
 pause >nul
 cls && echo Installing and replacing registry key(s). && timeout 1 >nul && cls && echo Installing and replacing registry key(s).. && timeout 1 >nul && cls && echo Installing and replacing registry key(s)... && timeout 1 >nul && cls
 timeout 2 >nul
+Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\Applicability" /v "BranchName" /t REG_SZ /d "Dev" /f
+Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\Applicability" /v "Ring" /t REG_SZ /d "External" /f
+Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\Applicability" /v "ContentType" /t REG_SZ /d "Mainline" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIUsage" /t REG_DWORD /d "0" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "RegistrationFlow" /t REG_SZ /d "{\"InfoPage\":{\"Title\":\"Join the Windows Insider Program\",\"PrimaryButtonText\":\"Sign Up\",\"SecondaryButtonText\":\"Close\",\"ParagraphText\":\"Be the first to access upcoming Windows features by becoming a Windows Insider. Once you are an Insider, you'll be able to install Windows Insider Previews and start giving feedback directly to Windows engineers. You'll receive a Welcome email and periodic newsletters with updates on the latest preview features, as well as occasional surveys and invites to special events. \",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":true},\"LegalAgreement\":{\"PrivacyPolicyLinkText\":\"Read the Microsoft Insider Privacy Statement\",\"InsiderAgreementLinkText\":\"Read the Windows Insider Program Agreement\",\"CheckBoxTextKey\":\"I've read and accept the terms of this agreement\",\"Title\":\"You are almost there\",\"PrimaryButtonText\":\"Submit\",\"SecondaryButtonText\":\"Close\",\"ParagraphText\":\"All you need to do is read the program agreement and the privacy statement, click that you accept the terms of the program agreement and hit the Submit button \",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":true},\"FinishedPage\":{\"Title\":\"You're good to go\",\"PrimaryButtonText\":\"Close\",\"SecondaryButtonText\":\"\",\"ParagraphText\":\"Thank you for registering for the Windows Insider Program.  Now let's get your device set up.\",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":false},\"ErrorUnknownPage\":{\"ShouldShowErrorCode\":true,\"Title\":\"We encountered an error\",\"PrimaryButtonText\":\"Close\",\"SecondaryButtonText\":\"\",\"ParagraphText\":\"Something has gone wrong and we are unable to continue.  Try again later.\",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":false},\"ErrorRegistrationCallFailedPage\":{\"ShouldShowErrorCode\":true,\"Title\":\"Error\",\"PrimaryButtonText\":\"Close\",\"SecondaryButtonText\":\"\",\"ParagraphText\":\"Something unexpected has gone wrong\",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":false},\"RegisterServiceCallLoadingPage\":{\"LoadingText\":\"Registering...\"}}" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "ConfigurationBasicUIText" /t REG_SZ /d "{\"Title\":\"Pick your Insider settings\",\"Description\":\"Choose the channel you want to receive Windows 10 Insider Preview Builds from on this device.\"}" /f
@@ -89,21 +92,6 @@ Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "Configura
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIContentType" /t REG_SZ /d "Mainline" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIBranch" /t REG_SZ /d "Dev" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIRing" /t REG_SZ /d "External" /f
-cls && echo Would you like to test the experimental check bypasses for a more "native" update experience?
-echo [31mPlease note, this is entirely experimental! I'm unaware if this works or not and am not responsible for issues that may occur.[37m
-echo.
-set /p main= 
-if %main% == "y" "Y" "yes" "Yes" "YES" goto bypasschecksexperiment
-if %main% == "n" "N" "no" "No" "NO" cls && echo Successfully imported registry key(s). && echo We'll reboot your computer for you, please check the Insider settings in Updates & Security afterwards. && timeout 2 >nul && shutdown /r /c "revisitable's Windows 11 Patcher: Restarting PC..." /t 5
-
-:bypasschecksexperiment
-cls && title Bypass Check Patch (Experimental) initializing... 
-echo Please remember this is entirely experimental. I'm unaware if this works or not.
-echo [31mI am not responsible for anything that may go wrong in any shape or form. 
-echo You are acknowledging this warning by continuing.[37m Press 'Enter' to continue...
-pause >nul
-cls && echo Installing and replacing registry key(s). && timeout 1 >nul && cls && echo Installing and replacing registry key(s).. && timeout 1 >nul && cls && echo Installing and replacing registry key(s)... && timeout 1 >nul && cls
-timeout 2 >nul
 Reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v "BypassTPMCheck" /t REG_DWORD /d "1" /f
 Reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v "BypassSecureBootCheck" /t REG_DWORD /d "1" /f
 cls && echo Successfully imported registry key(s). && echo We'll reboot your computer for you, please update in Updates & Security afterwards.
