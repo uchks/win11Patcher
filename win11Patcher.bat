@@ -1,5 +1,6 @@
 @echo off
-rem revisitable was here
+rem fuck depression, you're loved <3
+rem breaking tons of licenses w/ this.
 chcp 65001 >nul
 title revisitable's Windows 11 Patcher
 if not "%1" == "max" start /MAX cmd /c %0 max & exit/b
@@ -39,14 +40,15 @@ echo ;;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;;
 echo ;;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;;
 echo :;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;:
 echo.
-echo [40;37mrevisitable's Windows 11 Patcher
+echo [37mrevisitable's Windows 11 Patcher
 echo Windows 11 TPM 2.0 and Secure Boot Setup.exe/Registry bypass
-echo https://discord.iloveemogirls.com
+echo https://discord.iloveemogirls.com && rem This is my Discord server, drop by and say Hi!
 echo.
 echo 1. Insider Patch -
 echo 	Changes Insider channel from Release Preview or other channel to Dev (Allows Windows 11 insider updates)
+echo 	[31mExperimental Patch[37m included for bypassing TPM 2.0 check and Secure Boot check on a reboot. && rem ChrisTitusTech claims this works but :thonk:
 echo.
-echo 2. ISO Patch -
+echo 2. ISO Patch [31m(Work in Progress)[37m -
 echo 	Allows the upgrade to Windows 11 using the ISO Setup.exe on unsupported hardware.
 echo.
 echo 3. Remove Build Info -
@@ -57,9 +59,9 @@ echo 5. Restart Computer
 echo 6. Credits
 echo 7. Exit
 echo.
-set /p main=Type the number corresponding to your selection: 
+set /p main= 
 if %main% == 1 goto insiderpatch
-if %main% == 2 goto isopatch
+if %main% == 2 goto mainmenu && rem This will be changed back to isopatch after proper implementation.
 if %main% == 3 goto rmb
 if %main% == 4 goto update
 if %main% == 5 goto restart
@@ -71,10 +73,10 @@ timeout 2 >nul
 goto mainmenu
 
 :insiderpatch
-cls && title Insider Dev Patch initalizing...
+cls && title Insider Dev Patch initializing...
 echo If you're not already in the Release Preview insider ring do that now. After you're done, press 'Enter' to continue.
 pause >nul
-cls && echo Installing and replacing registry key(s)...
+cls && echo Installing and replacing registry key(s). && timeout 1 >nul && cls && echo Installing and replacing registry key(s).. && timeout 1 >nul && cls && echo Installing and replacing registry key(s)... && timeout 1 >nul && cls
 timeout 2 >nul
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIUsage" /t REG_DWORD /d "0" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "RegistrationFlow" /t REG_SZ /d "{\"InfoPage\":{\"Title\":\"Join the Windows Insider Program\",\"PrimaryButtonText\":\"Sign Up\",\"SecondaryButtonText\":\"Close\",\"ParagraphText\":\"Be the first to access upcoming Windows features by becoming a Windows Insider. Once you are an Insider, you'll be able to install Windows Insider Previews and start giving feedback directly to Windows engineers. You'll receive a Welcome email and periodic newsletters with updates on the latest preview features, as well as occasional surveys and invites to special events. \",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":true},\"LegalAgreement\":{\"PrivacyPolicyLinkText\":\"Read the Microsoft Insider Privacy Statement\",\"InsiderAgreementLinkText\":\"Read the Windows Insider Program Agreement\",\"CheckBoxTextKey\":\"I've read and accept the terms of this agreement\",\"Title\":\"You are almost there\",\"PrimaryButtonText\":\"Submit\",\"SecondaryButtonText\":\"Close\",\"ParagraphText\":\"All you need to do is read the program agreement and the privacy statement, click that you accept the terms of the program agreement and hit the Submit button \",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":true},\"FinishedPage\":{\"Title\":\"You're good to go\",\"PrimaryButtonText\":\"Close\",\"SecondaryButtonText\":\"\",\"ParagraphText\":\"Thank you for registering for the Windows Insider Program.  Now let's get your device set up.\",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":false},\"ErrorUnknownPage\":{\"ShouldShowErrorCode\":true,\"Title\":\"We encountered an error\",\"PrimaryButtonText\":\"Close\",\"SecondaryButtonText\":\"\",\"ParagraphText\":\"Something has gone wrong and we are unable to continue.  Try again later.\",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":false},\"ErrorRegistrationCallFailedPage\":{\"ShouldShowErrorCode\":true,\"Title\":\"Error\",\"PrimaryButtonText\":\"Close\",\"SecondaryButtonText\":\"\",\"ParagraphText\":\"Something unexpected has gone wrong\",\"IsPrimaryButtonEnabled\":true,\"IsSecondaryButtonEnabled\":false},\"RegisterServiceCallLoadingPage\":{\"LoadingText\":\"Registering...\"}}" /f
@@ -83,16 +85,32 @@ Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "Configura
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIContentType" /t REG_SZ /d "Mainline" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIBranch" /t REG_SZ /d "Dev" /f
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIRing" /t REG_SZ /d "External" /f
-cls && echo Successfully imported registry key(s). Please reboot your computer then check the Insider settings in Updates & Security.
-echo Press 'Enter' to continue...
+cls && echo Would you like to test the experimental check bypasses for a more "native" update experience?
+echo [31mPlease note, this is entirely experimental! I'm unaware if this works or not and am not responsible for issues that may occur.[37m
+echo.
+set /p main= 
+if %main% == "y" "Y" "yes" "Yes" "YES" goto bypasschecksexperiment
+if %main% == "n" "N" "no" "No" "NO" cls && echo Successfully imported registry key(s). && echo We'll reboot your computer for you, please check the Insider settings in Updates & Security afterwards. && timeout 2 >nul && shutdown /r /c "revisitable's Windows 11 Patcher: Restarting PC..." /t 5
+
+:bypasschecksexperiment
+cls && title Bypass Check Patch (Experimental) initializing... 
+echo Please remember this is entirely experimental. I'm unaware if this works or not.
+echo [31mI am not responsible for anything that may go wrong in any shape or form. 
+echo You are acknowledging this warning by continuing.[37m Press 'Enter' to continue...
 pause >nul
-goto mainmenu
+cls && echo Installing and replacing registry key(s). && timeout 1 >nul && cls && echo Installing and replacing registry key(s).. && timeout 1 >nul && cls && echo Installing and replacing registry key(s)... && timeout 1 >nul && cls
+timeout 2 >nul
+Reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v "BypassTPMCheck" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v "BypassSecureBootCheck" /t REG_DWORD /d "1" /f
+cls && echo Successfully imported registry key(s). && echo We'll reboot your computer for you, please update in Updates & Security afterwards.
+timeout 2 >nul
+shutdown /r /c "revisitable's Windows 11 Patcher: Restarting PC..." /t 5
 
 :isopatch
 
 :rmb
-cls && title Build Info Patch initalizing...
-echo Installing and replacing registry key(s)...
+cls && title Build Info Patch initializing...
+echo Installing and replacing registry key(s). && timeout 1 >nul && cls && echo Installing and replacing registry key(s).. && timeout 1 >nul && cls && echo Installing and replacing registry key(s)... && timeout 1 >nul && cls
 timeout 2 >nul
 Reg.exe add "HKCU\Control Panel\Desktop" /v "PaintDesktopVersion" /t REG_DWORD /d "1" /f
 cls && echo Successfully imported registry key(s). If this doesn't immediately change your build info in the bottom right, reboot or relogin.
