@@ -45,28 +45,32 @@ echo Windows 11 TPM 2.0 and Secure Boot Setup.exe/Registry bypass
 echo https://discord.iloveemogirls.com && rem This is my Discord server, drop by and say Hi!
 echo.
 echo 1. Insider Patch -
-echo 	Changes Insider channel from Release Preview or other channel to Dev (Allows Windows 11 insider updates)
+echo 	Changes Insider channel from Release Preview or Beta to Dev channel (Allows Windows 11 insider updates)
 echo 	[31mExperimental Patch[37m included for bypassing TPM 2.0 check and Secure Boot check on a reboot. && rem ChrisTitusTech claims this works but :thonk:
 echo.
 echo 2. ISO Patch [31m(Work in Progress)[37m -
-echo 	Allows the upgrade to Windows 11 using the ISO Setup.exe on unsupported hardware.
+echo 	Allows the upgrade to Windows 11 using the ISOs "Setup.exe" on unsupported hardware.
 echo.
 echo 3. Remove Build Info -
 echo 	Remove build info in the bottom right from Windows 11 Insider Builds or Windows 10 Insider Builds.
 echo.
-echo 4. Update Patcher
-echo 5. Restart Computer
-echo 6. Credits
-echo 7. Exit
+echo 4. Microsoft Activation Scripts (MAS) by massgravel -
+echo 	[31mPiracy.[37m If you have morals or something, this isn't for you. [31mArghh.[37m
+echo.
+echo 5. Update Patcher
+echo 6. Restart Computer
+echo 7. Credits
+echo 8. Exit
 echo.
 set /p main= 
 if %main% == 1 goto insiderpatch
 if %main% == 2 goto mainmenu && rem This will be changed back to isopatch after proper implementation.
 if %main% == 3 goto rmb
-if %main% == 4 goto update
-if %main% == 5 goto restart
-if %main% == 6 goto credits
-if %main% == 7 goto exit
+if %main% == 4 rundll32 url.dll,FileProtocolHandler https://github.com/massgravel/Microsoft-Activation-Scripts
+if %main% == 5 goto update
+if %main% == 6 goto restart
+if %main% == 7 goto credits
+if %main% == 8 goto exit
 cls
 echo Please Select An Option On The Menu...
 timeout 2 >nul
