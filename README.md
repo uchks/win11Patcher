@@ -13,7 +13,6 @@ This project is still a work in progress. Due to my depression, I can't find the
 ### Credits
 [Microsoft](https://microsoft.com)<br/>
 [uupdump.net](https://uupdump.net)<br>
-[WinPass11](https://github.com/project-winpass11/WinPass11.GuidedInstaller)<br/>
 [ChrisTitusTech](https://christitus.com/update-any-pc-to-windows11/)
 
 <p align="left">

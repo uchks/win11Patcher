@@ -1,24 +1,13 @@
 @echo off
+set ver=a1.0 07-12-2021
 rem fuck depression, you're loved <3
 rem breaking tons of licenses w/ this.
 chcp 65001 >nul
 title revisitable's Windows 11 Patcher
-if not "%1" == "max" start /MAX cmd /c %0 max & exit/b
-
-:admincheck
-echo Checking for Administrator Permissions...
-    timeout 2 >nul
-    net session >nul 2>&1
-    if %errorLevel% == 0 (
-	goto mainmenu
-    ) else (
-        cls & echo Error: Please Run As Administrator.
-	timeout 2 >nul
-	exit /b 1
-    )
+if not "%1"=="am_admin" powershell start -WindowStyle maximized -verb runas '%0' am_admin & exit /b
 
 :mainmenu
-title revisitable's Windows 11 Patcher
+title revisitable's Windows 11 Patcher %ver%
 cls && echo [40;36m:;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;:
 echo ;;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;;
 echo ;;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;;
@@ -41,12 +30,12 @@ echo ;;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;;
 echo :;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;:
 echo.
 echo [37mrevisitable's Windows 11 Patcher
-echo Windows 11 TPM 2.0 and Secure Boot Setup.exe/Registry bypass
+echo %ver%
 echo https://discord.iloveemogirls.com && rem This is my Discord server, drop by and say Hi!
 echo.
 echo 1. Insider Patch -
 echo 	Changes Insider channel from Release Preview or Beta to Dev channel (Allows Windows 11 insider updates)
-echo 	Bypasses TPM 2.0, Secure Boot, RAM, & Storage check on a reboot.
+echo 	Bypasses TPM 2.0, Secure Boot, RAM, + Storage check on a reboot.
 echo.
 echo 2. ISO Patch [31m(Work in Progress)[37m -
 echo 	Allows the upgrade to Windows 11 using the ISOs "Setup.exe" on unsupported hardware.
@@ -101,6 +90,13 @@ timeout 2 >nul
 shutdown /r /c "revisitable's Windows 11 Patcher: Restarting PC..." /t 5
 
 :isopatch
+rem Extract ISO to Script Path and Create Mount Directory
+cd /d "%~dp0"
+if not exist "DVD" md "DVD"
+if not exist "Mount" md "Mount"
+if not exist "MountRE" md "MountRE"
+if not exist "MountBoot" md "MountBoot"
+bin\7z.exe x -y -o"DVD" "ISO\*.iso"
 
 :rmb
 cls && title Build Info Patch initializing...
@@ -168,5 +164,7 @@ echo ;;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;;
 echo :;;;;;;;;;;;;;;;;;d00d;;;;;;;;;;;;;;;;;:
 echo.
 echo [40;37mChris Titus Tech - https://christitus.com/update-any-pc-to-windows11/#system-modifications
+echo Microsoft - for their shitty requirements
+echo https://uupdump.net - for their work towards dumping updates as ISOs
 timeout 10 >nul
 goto mainmenu
