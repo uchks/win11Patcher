@@ -46,7 +46,7 @@ echo.
 echo 4. Microsoft Activation Scripts (MAS) by massgravel -
 echo 	[31mPiracy.[37m If you have morals or something, this isn't for you. [31mArghh.[37m
 echo.
-echo 5. Update Patcher
+echo 5. Update Patcher [31m(Work in Progress)[37m
 echo 6. Restart Computer
 echo 7. Credits
 echo 8. Exit
@@ -56,7 +56,7 @@ if %main% == 1 goto insiderpatch
 if %main% == 2 goto mainmenu && rem This will be changed back to isopatch after proper implementation.
 if %main% == 3 goto rmb
 if %main% == 4 rundll32 url.dll,FileProtocolHandler https://github.com/massgravel/Microsoft-Activation-Scripts
-if %main% == 5 goto update
+if %main% == 5 goto mainmenu && rem This will be changed back to update after proper implementation.
 if %main% == 6 goto restart
 if %main% == 7 goto credits
 if %main% == 8 goto exit
@@ -110,7 +110,7 @@ goto mainmenu
 
 :update
 cls & title Updating...
-%userprofile%\Desktop\wget.exe -q -O %userprofile%/Desktop/win11Patcher.bat https://raw.githubusercontent.com/revisitable/win11Patcher/main/win11Patcher.bat
+%userprofile%\Desktop\bin\wget.exe -q -O %userprofile%/Desktop/win11Patcher.bat https://raw.githubusercontent.com/revisitable/win11Patcher/main/win11Patcher.bat
 timeout 5 >nul
 goto mainmenu
 
