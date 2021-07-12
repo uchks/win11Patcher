@@ -46,7 +46,7 @@ echo https://discord.iloveemogirls.com && rem This is my Discord server, drop by
 echo.
 echo 1. Insider Patch -
 echo 	Changes Insider channel from Release Preview or Beta to Dev channel (Allows Windows 11 insider updates)
-echo 	Bypasses TPM 2.0 check and Secure Boot check on a reboot.
+echo 	Bypasses TPM 2.0, Secure Boot, RAM, & Storage check on a reboot.
 echo.
 echo 2. ISO Patch [31m(Work in Progress)[37m -
 echo 	Allows the upgrade to Windows 11 using the ISOs "Setup.exe" on unsupported hardware.
@@ -94,6 +94,8 @@ Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIBranch"
 Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Selection" /v "UIRing" /t REG_SZ /d "External" /f
 Reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v "BypassTPMCheck" /t REG_DWORD /d "1" /f
 Reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v "BypassSecureBootCheck" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v "BypassRAMCheck" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\Setup\LabConfig" /v "BypassStorageCheck" /t REG_DWORD /d "1" /f
 cls && echo Successfully imported registry key(s). && echo We'll reboot your computer for you, please update in Updates & Security afterwards.
 timeout 2 >nul
 shutdown /r /c "revisitable's Windows 11 Patcher: Restarting PC..." /t 5
