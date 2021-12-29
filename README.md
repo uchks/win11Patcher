@@ -3,7 +3,9 @@
 </p>
 <p align="center">
     <strong>win11Patcher</strong></br>
+    <strong>Superseded by other tools, such as Rufus (https://rufus.ie). Archived.</strong></br>
 </p>
+
 
 ### Overview
 win11Patcher is a foss patcher in Batchfile for Windows Users to bypass Windows 11 Restrictions. To download the project, go [here](https://github.com/revisitable/win11Patcher/archive/refs/heads/main.zip). Run `win11Patcher.bat` as **Administrator**.<br/>
@@ -14,7 +16,3 @@ This project is still a work in progress. Due to my depression, I can't find the
 [Microsoft](https://microsoft.com)<br/>
 [uupdump.net](https://uupdump.net)<br>
 [ChrisTitusTech](https://christitus.com/update-any-pc-to-windows11/)
-
-<p align="left">
-    <sub>psst... <strong>https://discord.iloveemogirls.com</strong></sub></br>
-</p>
